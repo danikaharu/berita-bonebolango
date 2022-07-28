@@ -7,8 +7,13 @@
     <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="{{ asset('mazer') }}/css/main/app.css">
     @stack('css')
-    <link rel="shortcut icon" href="{{ asset('mazer') }}/images/logo/favicon.svg" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('mazer') }}/images/logo/favicon.png" type="image/png">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('template/home') }} /assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ asset('template/home') }}/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ asset('template/home') }}/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="{{ asset('template/home') }}/assets/favicon/site.webmanifest">
 </head>
 </head>
 
