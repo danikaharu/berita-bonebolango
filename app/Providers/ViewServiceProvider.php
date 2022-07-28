@@ -68,8 +68,8 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         View::composer([
-            'articles.create',
-            'articles.edit',
+            'admin.articles.create',
+            'admin.articles.edit',
         ], function ($view) {
             return $view->with(
                 'users',
@@ -78,8 +78,8 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         View::composer([
-            'articles.create',
-            'articles.edit',
+            'admin.articles.create',
+            'admin.articles.edit',
         ], function ($view) {
             return $view->with(
                 'categories',
@@ -88,8 +88,8 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         View::composer([
-            'tabloids.create',
-            'tabloids.edit',
+            'admin.tabloids.create',
+            'admin.tabloids.edit',
         ], function ($view) {
             return $view->with(
                 'users',
@@ -98,8 +98,8 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         View::composer([
-            'tabloids.create',
-            'tabloids.edit',
+            'admin.tabloids.create',
+            'admin.tabloids.edit',
         ], function ($view) {
             return $view->with(
                 'categories',
@@ -108,8 +108,8 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         View::composer([
-            'galleries.create',
-            'galleries.edit',
+            'admin.galleries.create',
+            'admin.galleries.edit',
         ], function ($view) {
             return $view->with(
                 'users',

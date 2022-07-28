@@ -52,7 +52,6 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $categories = Category::select('id', 'title')->get();
         return view('admin.articles.create', compact('categories'));
     }
 
@@ -136,10 +135,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        $categories = Category::get();
         $article->load('user:id,name', 'category:id,title');
 
-        return view('admin.articles.edit', compact('article', 'categories'));
+        return view('admin.articles.edit', compact('article'));
     }
 
     /**
