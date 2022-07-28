@@ -248,6 +248,8 @@ class HomeController extends Controller
 
     private function trendingArticle()
     {
+        $startWeek = Carbon::now()->startOfWeek();
+        $endWeek = Carbon::now()->endOfWeek();
         $trendingArticle = Analytics::performQuery(
             Period::create($startWeek, $endWeek),
             'ga:pageviews',
