@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\{StoreUserRequest, UpdateUserRequest};
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 use Image;
 
@@ -70,6 +71,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $attr = $request->validated();
+        $attr['password'] = Hash::make($request->password);
 
         if ($request->file('avatar') && $request->file('avatar')->isValid()) {
 
