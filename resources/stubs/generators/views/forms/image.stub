@@ -1,0 +1,41 @@
+    @isset(${{modelCamelCase}})
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    @if (${{modelCamelCase}}->{{fieldSnakeCase}} == null)
+                        <img src="{{defaultImage}}" alt="{{fieldUcWords}}" class="rounded mb-2 mt-2" alt="{{fieldUcWords}}" width="200" height="150" style="object-fit: cover">
+                    @else
+                        <img src="{{ asset('{{uploadPathPublic}}/{{fieldPluralSnakeCase}}/' . ${{modelCamelCase}}->{{fieldSnakeCase}}) }}" alt="{{fieldUcWords}}" class="rounded mb-2 mt-2" width="200" height="150" style="object-fit: cover">
+                    @endif
+                </div>
+
+                <div class="col-md-8">
+                    <div class="form-group ms-3">
+                        <label for="{{fieldSnakeCase}}">{{ __('{{fieldUcWords}}') }}</label>
+                        <input type="file" name="{{fieldSnakeCase}}" class="form-control @error('{{fieldSnakeCase}}') is-invalid @enderror" id="{{fieldSnakeCase}}">
+
+                        @error('{{fieldSnakeCase}}')
+                            <div class="invalid-feedback">
+                                <i class="bx bx-radio-circle"></i>
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+        </div>
+    @else
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="{{fieldSnakeCase}}">{{ __('{{fieldUcWords}}') }}</label>
+                <input type="file" name="{{fieldSnakeCase}}" class="form-control @error('{{fieldSnakeCase}}') is-invalid @enderror" id="{{fieldSnakeCase}}"{{nullable}}>
+
+                @error('{{fieldSnakeCase}}')
+                    <div class="invalid-feedback">
+                        <i class="bx bx-radio-circle"></i>
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+        </div>
+    @endisset

@@ -1,0 +1,54 @@
+{
+  "name": "rtconner/laravel-tagging",
+  "description": "Use PHP traits to extend Laravel Eloquent Models to allow Tags. Models can be marked as Taggable.",
+  "license": "MIT",
+  "homepage": "https://smartersoftware.net/packages/laravel-tagging-taggable",
+  "keywords": ["tag", "tags", "tagging", "laravel", "taggable", "tagged", "eloquent", "laravel5"],
+  "authors": [
+    {
+      "name": "Robert Conner",
+      "email": "rtconner+composer@smarter.bz"
+    }
+  ],
+  "require": {
+    "php": "^7.3|^8.0",
+    "illuminate/database": ">=8.0",
+    "illuminate/support": ">=8.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "6.*",
+    "phpunit/phpunit": "9.*",
+    "mockery/mockery": "1.*",
+    "squizlabs/php_codesniffer": "3.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Conner\\Tagging\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Conner\\Tests\\Tagging\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Conner\\Tagging\\Providers\\TaggingServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit --color=always",
+    "check": [
+      "php-cs-fixer fix --ansi --dry-run --diff .",
+      "phpcs --report-width=200 --report-summary  --report-full src/ tests/ --standard=PSR2 -n",
+      "phpmd src/,tests/ text ./phpmd.xml.dist"
+    ],
+    "fix": [
+      "php-cs-fixer fix --ansi ."
+    ]
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

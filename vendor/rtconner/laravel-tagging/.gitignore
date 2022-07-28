@@ -1,0 +1,12 @@
+.project
+.settings
+!empty
+.idea
+.buildpath
+composer.phar
+composer.lock
+/vendor
+.DS_Store
+.phpintel/*
+.phpunit.result.cache
+.php_cs.cache
