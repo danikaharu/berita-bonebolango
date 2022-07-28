@@ -23,7 +23,7 @@ class Article extends Model
      *
      * @var array
      */
-    protected $casts = ['title' => CleanHtml::class, 'body' => CleanHtml::class, 'thumbnail' => CleanHtml::class, 'caption' => CleanHtml::class, 'published_at' => CleanHtml::class, 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    protected $casts = ['title' => CleanHtml::class, 'body' => CleanHtml::class, 'thumbnail' => CleanHtml::class, 'caption' => CleanHtml::class, 'published_at' => 'datetime:d/m/Y H:i', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
     protected $dates = ['published_at'];
 
