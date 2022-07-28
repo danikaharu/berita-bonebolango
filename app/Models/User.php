@@ -24,7 +24,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'avatar'
+        'avatar',
+        'status'
     ];
 
     /**
@@ -47,6 +48,7 @@ class User extends Authenticatable
         'email' => CleanHtml::class,
         'password' => CleanHtml::class,
         'avatar' => CleanHtml::class,
+        'status' => CleanHtml::class,
         'email_verified_at' => 'datetime:d/m/Y H:i',
         'created_at' => 'datetime:d/m/Y H:i',
         'updated_at' => 'datetime:d/m/Y H:i',

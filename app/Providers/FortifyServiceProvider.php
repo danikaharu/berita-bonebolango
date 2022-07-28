@@ -8,9 +8,11 @@ use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use Illuminate\Validation\ValidationException;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -66,6 +68,17 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::resetPasswordView(function ($request) {
             return view('auth.reset-password', ['request' => $request]);
+        });
+
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = \App\Models\User::where('email', $request->email)->first();
+
+            if ($user && Hash::check($request->password, $user->password)) {
+                if ($user->status == 1) {  // it will return if status == 1
+                    return $user;
+                }
+                throw ValidationException::withMessages([__('Silahkan hubungi admin untuk aktifkan akun anda')]);
+            }
         });
     }
 }

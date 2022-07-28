@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class StoreUserRequest extends FormRequest
 {
@@ -27,8 +29,9 @@ class StoreUserRequest extends FormRequest
         return [
             'name' => ['required', 'min:3', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'avatar' => ['nullable', 'image', 'max:1024'],
+            'avatar' => ['nullable', 'image', 'max:2048'],
             'role' => ['required', 'exists:roles,id'],
+            'status' => ['required', Rule::in([0, 1])],
             'password' =>  [
                 'required',
                 'confirmed',
