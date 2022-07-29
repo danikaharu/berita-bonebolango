@@ -155,7 +155,7 @@ color: var(--background-color);
 }
 
 .navbar-custom .nav-item{
-  margin-right: 2rem;
+  margin: auto;
 }
 
 .active:after{
@@ -926,5 +926,9 @@ position: relative;
     top: 0.2rem;
     left: 1.2rem;
     color: var(--background-color);
+  }
+
+  .navbar-custom .nav-item{
+    margin: 0;
   }
 }
