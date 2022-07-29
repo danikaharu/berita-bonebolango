@@ -35,7 +35,7 @@
                   <span class="toggler-icon bottom-bar"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
                       <li class="nav-item {{ request()->is('/') ? ' active' : '' }}">
                           <a class="nav-link" href="{{ route('home') }}">BERANDA</a>
                       </li>
@@ -53,10 +53,10 @@
                           </ul>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#">DPRD</a>
+                          <a class="nav-link" href="{{ route('detailCategory', $dprd->slug) }}">DPRD</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#">BUMD</a>
+                          <a class="nav-link" href="{{ route('detailCategory', $bumd->slug) }}">BUMD</a>
                       </li>
                       <li class="nav-item {{ request()->is('potret') ? ' active' : '' }}">
                           <a class="nav-link" href="{{ route('gallery') }}">POTRET BONEBOL</a>

@@ -58,6 +58,24 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         View::composer([
+            'layouts.home.header',
+        ], function ($view) {
+            return $view->with(
+                'dprd',
+                \App\Models\Category::select('title', 'slug')->where('slug', 'dprd')->first()
+            );
+        });
+
+        View::composer([
+            'layouts.home.header',
+        ], function ($view) {
+            return $view->with(
+                'bumd',
+                \App\Models\Category::select('title', 'slug')->where('slug', 'bumd')->first()
+            );
+        });
+
+        View::composer([
             'users.create',
             'users.edit',
         ], function ($view) {
