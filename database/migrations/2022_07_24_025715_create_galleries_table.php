@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('album_id')->constrained('albums');
             $table->string('file');
-            $table->string('caption');
+            $table->string('caption')->default('-');
             $table->timestamps();
         });
     }
