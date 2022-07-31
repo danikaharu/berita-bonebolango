@@ -22,7 +22,7 @@ class Gallery extends Model
      *
      * @var array
      */
-    protected $casts = ['file' => CleanHtml::class, 'caption' => CleanHtml::class, 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    protected $casts = ['file' => 'string', 'caption' => CleanHtml::class, 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
     public function album()
     {
