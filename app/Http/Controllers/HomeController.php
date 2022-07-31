@@ -67,7 +67,6 @@ class HomeController extends Controller
     public function gallery()
     {
         $albums = \App\Models\Album::with(['user', 'galleries'])
-            ->select('title', 'slug', 'created_at')
             ->latest()
             ->paginate(12);
         return view('home.gallery', compact('albums'));
