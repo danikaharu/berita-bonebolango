@@ -36,7 +36,7 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
-                      <li class="nav-item {{ request()->is('/') ? ' active' : '' }}">
+                      <li class="nav-item {{ request()->is('/') ? ' active' : '' }}" style="margin-left: 0">
                           <a class="nav-link" href="{{ route('home') }}">BERANDA</a>
                       </li>
                       <li class="nav-item {{ request()->is('berita*') ? ' active' : '' }} dropdown">
@@ -61,7 +61,7 @@
                       <li class="nav-item {{ request()->is('potret') ? ' active' : '' }}">
                           <a class="nav-link" href="{{ route('gallery') }}">POTRET BONEBOL</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item" style="margin-right: 0">
                           <a class="nav-link" href="#" onclick="openSearch()"><i class="fas fa-search"></i></a>
                       </li>
                   </ul>
