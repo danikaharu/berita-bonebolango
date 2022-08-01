@@ -6,7 +6,7 @@
 
 @push('style')
     <!-- Swiper -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 @endpush
 
 
@@ -263,59 +263,54 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h4 class="section__title-sub">Bonebol Sepekan</h4>
-                    @forelse($tabloidSepekan as $tabloid)
-                        <div class="swiper mySwiper">
-                            <div class="swiper-wrapper">
+                    <div class="swiper tabloid">
+                        <div class="swiper-wrapper">
+                            @foreach ($tabloidSepekan as $tabloid)
                                 <div class="swiper-slide">
                                     <a href="{{ route('detailTabloid', $tabloid->slug) }}" target="_blank">
                                         <img src='{{ asset('storage/uploads/tabloids/thumbnail/' . $tabloid->thumbnail) }}'
                                             style="width: 8.75rem;">
                                     </a>
                                 </div>
-                            </div>
-                            <div class="swiper-pagination"></div>
+                            @endforeach
                         </div>
-                    @empty
-                        <h5 class="highlight-title">Maaf,belum ada data</h5>
-                    @endforelse
+                        <div class="swiper-pagination"></div>
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <h4 class="section__title-sub">Kambungu</h4>
-                    @forelse($tabloidKambungu as $tabloid)
-                        <div class="swiper mySwiper">
-                            <div class="swiper-wrapper">
+                    <div class="swiper tabloid">
+                        <div class="swiper-wrapper">
+                            @foreach ($tabloidKambungu as $tabloid)
                                 <div class="swiper-slide">
                                     <a href="{{ route('detailTabloid', $tabloid->slug) }}" target="_blank">
                                         <img src='{{ asset('storage/uploads/tabloids/thumbnail/' . $tabloid->thumbnail) }}'
                                             style="width: 8.75rem;">
                                     </a>
                                 </div>
-                            </div>
-                            <div class="swiper-pagination"></div>
+                            @endforeach
                         </div>
-                    @empty
-                        <h5 class="highlight-title">Maaf,belum ada data</h5>
-                    @endforelse
+                        <div class="swiper-pagination"></div>
+                    </div>
                 </div>
             </div>
-            <hr>
         </div>
     </section>
+    <hr>
 
     @include('layouts.home.include.related-link')
 @endsection
 
 @push('js')
     <!-- Swiper -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script>
-        // Swiper
-        var swiper = new Swiper(".mySwiper", {
+        // Swiper Tabloid
+        var swiper = new Swiper(".tabloid", {
             slidesPerView: 3,
             grid: {
                 rows: 2,
             },
-            spaceBetween: 30,
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
@@ -324,6 +319,6 @@
                 },
             },
         });
-        // End Swiper
+        // End Swiper Tabloid
     </script>
 @endpush
