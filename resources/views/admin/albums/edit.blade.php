@@ -49,9 +49,7 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            @include('albums.include.formImage')
-
-                            </form>
+                            @include('admin.albums.include.formImage')
                         </div>
                     </div>
                 </div>
