@@ -96,7 +96,7 @@
                             </div>
                             <a href="{{ route('detailArticle', $article->slug) }}">
                                 <img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }} " alt="article"
-                                    style="object-fit: cover; width: 100%; height: 10.5rem;">
+                                    style="max-width: 100%; height: auto;">
                             </a>
                         </div>
                         <h5 class=" highlight-title">
@@ -239,7 +239,7 @@
                     <div class="col-lg-4">
                         <a href="{{ route('detailGallery', $album->slug) }}">
                             <img src="{{ asset('storage/uploads/galleries/' . $album->thumbnail()->file) }} "
-                                alt="highlight" style="object-fit: cover; width: 100%; height: 10.5rem;">
+                                alt="highlight" style="max-width: 100%; height: auto;">
                         </a>
                         <h5 class="highlight-title">
                             <a href="{{ route('detailGallery', $album->slug) }}">{{ $album->title }}</a>
