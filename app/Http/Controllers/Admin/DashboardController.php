@@ -13,7 +13,7 @@ class DashboardController extends Controller
         $totalTabloid = \App\Models\Tabloid::count();
         $totalArticle = \App\Models\Article::count();
         $totalArticleByCategory = \App\Models\Category::withCount('article')->orderBy('article_count', 'desc')->get();
-        $latestArticle = \App\Models\Article::with('user')->limit(2)->latest()->get();
+        $latestArticle = \App\Models\Article::with('user')->where('status', 'Published')->limit(2)->latest()->get();
 
 
         return view('admin.dashboard', compact('totalGallery', 'totalTabloid', 'totalArticle', 'totalArticleByCategory', 'latestArticle'));
