@@ -94,10 +94,15 @@
                                     <span>{{ $article->category->title }}</span>
                                 </a>
                             </div>
-                            <a href="{{ route('detailArticle', $article->slug) }}">
-                                <img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }} " alt="article"
-                                    style="max-width: 100%; height: auto;">
-                            </a>
+                            <div class="card h-100">
+                                <div class="card-img">
+                                    <a href="{{ route('detailArticle', $article->slug) }}">
+                                        <img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }} "
+                                            alt="article"
+                                            style="object-fit:cover;object-position:center;height:300px;width:100%">
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <h5 class=" highlight-title">
                             <a href="{{ route('detailArticle', $article->slug) }}">{{ $article->title }}</a>
@@ -239,7 +244,7 @@
                     <div class="col-lg-4">
                         <a href="{{ route('detailGallery', $album->slug) }}">
                             <img src="{{ asset('storage/uploads/galleries/' . $album->thumbnail()->file) }} "
-                                alt="highlight" style="max-width: 100%; height: auto;">
+                                alt="highlight" style="object-fit:cover;object-position:center;height:300px;width:100%">
                         </a>
                         <h5 class="highlight-title">
                             <a href="{{ route('detailGallery', $album->slug) }}">{{ $album->title }}</a>
@@ -311,6 +316,7 @@
             grid: {
                 rows: 2,
             },
+            spaceBetween: 30,
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
