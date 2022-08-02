@@ -75,7 +75,7 @@
             ajax: "{{ route('articles.index') }}",
             columns: [{
                     data: 'user',
-                    name: 'user.name'
+                    name: 'user'
                 },
 
                 {
