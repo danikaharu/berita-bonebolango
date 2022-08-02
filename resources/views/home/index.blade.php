@@ -23,7 +23,8 @@
                                 </a>
                             </div>
                             <a href="#"><img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }}"
-                                    alt="highlight" style="width: 100%; height: 25rem;"></a>
+                                    alt="highlight"
+                                    style="object-fit:cover;object-position:center;width: 100%; height: 22rem;"></a>
                         </div>
                         <h5 class="highlight-title">
                             <a href="{{ route('detailArticle', $article->slug) }}">
@@ -36,7 +37,7 @@
                             <span style="margin-left: 1rem;"><i class="far fa-clock"></i>
                                 {{ $article->published_at->diffForHumans() }}</span>
                         </div>
-                        <p class="highlight-content">{!! $article->body !!}</p>
+                        <p class="highlight-content">{!! str_limit($article->body, 350) !!}</p>
                     @empty
                         <h5 class="highlight-title">Maaf, belum ada data</h5>
                     @endforelse
