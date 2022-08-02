@@ -193,7 +193,6 @@ class HomeController extends Controller
         $data = str_replace("/", '', $string);
 
         $mainHighlight = \App\Models\Article::where('slug', $data)
-            ->select('title', 'slug', 'body', 'published_at')
             ->published()
             ->with(['user', 'category'])
             ->get();
@@ -234,7 +233,6 @@ class HomeController extends Controller
         $data = str_replace("/", '', $string);
 
         $subHighlight = \App\Models\Article::whereIn('slug', array($data))
-            ->select('title', 'slug', 'body', 'published_at')
             ->published()
             ->with(['user', 'category'])
             ->get();
