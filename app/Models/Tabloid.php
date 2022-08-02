@@ -40,6 +40,6 @@ class Tabloid extends Model
             ->select('thumbnail', 'slug')
             ->latest()
             ->take(12)
-            ->simplePaginate(6);
+            ->get();
     }
 }
