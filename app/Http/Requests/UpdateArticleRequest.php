@@ -25,7 +25,6 @@ class UpdateArticleRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'user_id' => auth()->user()->id,
             'slug' => Str::slug($this->input('title')),
         ]);
     }
