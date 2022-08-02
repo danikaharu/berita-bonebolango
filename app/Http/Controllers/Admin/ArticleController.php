@@ -7,8 +7,7 @@ use App\Models\Article;
 use App\Http\Requests\{StoreArticleRequest, UpdateArticleRequest};
 use App\Models\Category;
 use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
+
 use Image;
 
 class ArticleController extends Controller
@@ -29,7 +28,12 @@ class ArticleController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $articles = Article::with('user:id,name', 'category:id,title')->where('user_id', auth()->user()->id)->latest()->get();
+            $articles = Article::with('user')->select('articles.*')->latest();
+
+            if (auth()->user()->roles->first()->id != 1) {
+                $articles
+                    ->where('user_id', auth()->user()->id);
+            }
 
             return Datatables::of($articles)
                 ->addColumn('body', function ($row) {
