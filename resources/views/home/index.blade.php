@@ -14,7 +14,7 @@
     <section class="highlight">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-7">
                     @forelse($mainHighlight as $article)
                         <div class="highlight__image">
                             <div class="highlight__image-category">
@@ -37,12 +37,12 @@
                             <span style="margin-left: 1rem;"><i class="far fa-clock"></i>
                                 {{ $article->published_at->diffForHumans() }}</span>
                         </div>
-                        <p class="highlight-content">{!! Str::limit($article->body, 350) !!}</p>
+                        <p class="highlight-content">{!! Str::limit($article->body, 250) !!}</p>
                     @empty
                         <h5 class="highlight-title">Maaf, belum ada data</h5>
                     @endforelse
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     @forelse($subHighlight as $article)
                         <div class="col-lg-12" style="margin-bottom: 3.5rem;">
                             <div class="row">
@@ -50,7 +50,7 @@
                                     <div class="highlight__image">
                                         <div class="highlight__image-category__sub">
                                             <a href="{{ route('detailCategory', $article->category->slug) }}">
-                                                <span>{{ $article->category->name }}</span>
+                                                <span>{{ $article->category->title }}</span>
                                             </a>
                                         </div>
                                         <a href="{{ route('detailArticle', $article->slug) }}"><img class="img-fluid"
