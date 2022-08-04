@@ -95,15 +95,10 @@
                                     <span>{{ $article->category->title }}</span>
                                 </a>
                             </div>
-                            <div class="card h-100">
-                                <div class="card-img">
-                                    <a href="{{ route('detailArticle', $article->slug) }}">
-                                        <img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }} "
-                                            alt="article"
-                                            style="object-fit:cover;object-position:center;height:300px;width:100%">
-                                    </a>
-                                </div>
-                            </div>
+                            <a href="{{ route('detailArticle', $article->slug) }}">
+                                <img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }} " alt="article"
+                                    class="highlight__image-thumbnail">
+                            </a>
                         </div>
                         <h5 class=" highlight-title">
                             <a href="{{ route('detailArticle', $article->slug) }}">{{ $article->title }}</a>
@@ -130,12 +125,12 @@
                 <div class="col-lg-4">
                     <h2 class="section-title">Pemerintahan</h2>
                     @forelse ($articleByCategory1 as $article)
-                        <div class="row">
+                        <div class="row news-category__row">
                             <div class="col-lg-5">
                                 <div class="highlight__image">
                                     <a href="{{ route('detailArticle', $article->slug) }}">
                                         <img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }} "
-                                            alt="article image" style="width: 100%; object-fit: cover;">
+                                            alt="article image" class="highlight__image-thumbnail">
                                     </a>
                                 </div>
                             </div>
@@ -161,12 +156,12 @@
                 <div class="col-lg-4">
                     <h2 class="section-title">Ekonomi</h2>
                     @forelse ($articleByCategory2 as $article)
-                        <div class="row">
+                        <div class="row news-category__row">
                             <div class="col-lg-5">
                                 <div class="highlight__image">
                                     <a href="{{ route('detailArticle', $article->slug) }}">
                                         <img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }} "
-                                            alt="article image" style="width: 100%; object-fit: cover;">
+                                            alt="article image" class="highlight__image-thumbnail">
                                     </a>
                                 </div>
                             </div>
@@ -192,12 +187,12 @@
                 <div class="col-lg-4">
                     <h2 class="section-title">Pembangunan</h2>
                     @forelse ($articleByCategory3 as $article)
-                        <div class="row">
+                        <div class="row news-category__row">
                             <div class="col-lg-5">
                                 <div class="highlight__image">
                                     <a href="{{ route('detailArticle', $article->slug) }}">
                                         <img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }} "
-                                            alt="article image" style="width: 100%; object-fit: cover;">
+                                            alt="article image" class="highlight__image-thumbnail">
                                     </a>
                                 </div>
                             </div>
@@ -267,7 +262,7 @@
     <section class="slider-tabloid">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 slider-tabloid__sepekan">
                     <h4 class="section__title-sub">Bonebol Sepekan</h4>
                     <div class="swiper tabloid">
                         <div class="swiper-wrapper">
@@ -283,7 +278,7 @@
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 slider-tabloid__kambungu">
                     <h4 class="section__title-sub">Kambungu</h4>
                     <div class="swiper tabloid">
                         <div class="swiper-wrapper">

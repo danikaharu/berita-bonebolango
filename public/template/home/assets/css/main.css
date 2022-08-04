@@ -325,6 +325,13 @@ color: var(--background-color);
   padding: 0.5rem 1rem;
 }
 
+.highlight__image-thumbnail{
+  object-fit:cover;
+  object-position:center;
+  height:100px;
+  width:100%;
+}
+
 .highlight__image-category__sub{
   position: absolute;
   top: 0.5rem;
@@ -664,12 +671,16 @@ border-radius: 2px;
 --------------------------------------------------------------*/
 .slider-tabloid{
   margin-top: 5rem;
-  margin-bottom: 5rem;
+}
+
+.slider-tabloid__kambungu,
+.slider-tabloid__sepekan{
+margin-bottom: -3.25rem;
 }
 
 .swiper {
 width: 100%;
-height: 100%;
+height:65%;
 margin-left: auto;
 margin-right: auto;
 }
@@ -762,6 +773,10 @@ footer{
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
     font-family: "Montserrat", sans-serif;
+  }
+
+  .news-category__row{
+    height: 9rem;
   }
 
   .related-link{
@@ -930,5 +945,16 @@ position: relative;
 
   .navbar-custom .nav-item{
     margin: 0;
+  }
+
+  .news-category__row{
+    height: 20rem;
+  }
+
+  .highlight__image-thumbnail{
+    object-fit:cover;
+    object-position:center;
+    height:200px;
+    width:100%;
   }
 }
