@@ -97,7 +97,7 @@
                             </div>
                             <a href="{{ route('detailArticle', $article->slug) }}">
                                 <img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }} " alt="article"
-                                    class="highlight__image-thumbnail">
+                                    style="object-fit:cover;object-position:center;height:200px;width:100%">
                             </a>
                         </div>
                         <h5 class=" highlight-title">
