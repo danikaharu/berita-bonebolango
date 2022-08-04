@@ -213,26 +213,28 @@ class HomeController extends Controller
                 'metrics' => 'ga:pageviews',
                 'dimensions' => 'ga:pagePath, ga:pagePathLevel1, ga:pagePathLevel2',
                 'filters' => 'ga:pagePathLevel1%3D~%5E/berita/',
-                'sort' => 'ga:pageviews',
-                'max-results' => 3
+                'sort' => '-ga:pageviews',
+                'max-results' => 4
             ]
         );
 
         $array = array();
-        $string = '';
-        foreach ($trendingArticle as $key => $row) {
+
+        foreach ($trendingArticle as $row) {
             $array = array_merge(
                 $array,
                 array($row[2])
             );
-
-            $lastArray = end($array);
-            $string != "" && $string .= ",";
-            $string .= $lastArray;
         }
-        $data = str_replace("/", '', $string);
 
-        $subHighlight = \App\Models\Article::whereIn('slug', array($data))
+        // Deleting first array item
+        array_shift($array);
+
+        // Remove slash in array
+        $data = str_replace("/", '', $array);
+
+
+        $subHighlight = \App\Models\Article::whereIn('slug', $data)
             ->published()
             ->with(['user', 'category'])
             ->get();
