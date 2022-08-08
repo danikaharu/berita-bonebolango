@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Http\Requests\{StoreArticleRequest, UpdateArticleRequest};
-use App\Models\Category;
 use Yajra\DataTables\Facades\DataTables;
-
 use Image;
 
 class ArticleController extends Controller
@@ -28,10 +26,14 @@ class ArticleController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $articles = Article::with('user')->select('articles.*')->latest();
+            $articles = Article::with('user')
+                ->select('articles.*')
+                ->where('status', 'Published')
+                ->latest();
 
             if (auth()->user()->roles->first()->id != 1) {
                 $articles
+                    ->where('status', 'Published')
                     ->where('user_id', auth()->user()->id);
             }
 
@@ -227,5 +229,38 @@ class ArticleController extends Controller
                 ->route('articles.index')
                 ->with('error', __('Artikel tidak bisa dihapus karena berelasi dengan data lain.'));
         }
+    }
+
+    /**
+     * Display a listing draft articles .
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function draft()
+    {
+        if (request()->ajax()) {
+            $articles = Article::with('user')
+                ->select('articles.*')
+                ->where('status', 'Draft')
+                ->latest();
+
+            if (auth()->user()->roles->first()->id != 1) {
+                $articles
+                    ->where('status', 'Draft')
+                    ->where('user_id', auth()->user()->id);
+            }
+
+            return Datatables::of($articles)
+                ->addColumn('body', function ($row) {
+                    return str($row->body)->limit(200);
+                })
+                ->addColumn('user', function ($row) {
+                    return $row->user ? $row->user->name : '-';
+                })
+                ->addColumn('action', 'admin.articles.include.action')
+                ->toJson();
+        }
+
+        return view('admin.articles.draft');
     }
 }

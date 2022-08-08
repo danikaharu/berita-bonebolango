@@ -18,6 +18,7 @@ Route::middleware(['auth', 'web'])->prefix('admin')->group(function () {
 
     Route::resource('categories', App\Http\Controllers\Admin\CategoryController::class);
 
+    Route::get('/articles/draft', [App\Http\Controllers\Admin\ArticleController::class, 'draft'])->name('articles.draft');
     Route::resource('articles', App\Http\Controllers\Admin\ArticleController::class);
 
     Route::resource('tabloids', App\Http\Controllers\Admin\TabloidController::class);

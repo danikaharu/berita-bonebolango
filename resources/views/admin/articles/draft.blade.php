@@ -80,7 +80,7 @@
         $('#data-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('articles.index') }}",
+            ajax: "{{ route('articles.draft') }}",
             columns: [{
                     data: 'user',
                     name: 'user'
