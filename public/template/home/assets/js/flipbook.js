@@ -1,6 +1,6 @@
 (function () {
     let currentPageIndex = 0;
-    let pageMode = 1;
+    let pageMode = 2;
     let cursorIndex = Math.floor(currentPageIndex / pageMode);
     let pdfInstance = null;
     let totalPagesCount = 0;
@@ -75,7 +75,7 @@
 
         Promise.all(renderPagesPromises).then((pages) => {
             const pagesHTML = `<div style="width: ${
-                pageMode > 1 ? "50%" : "100%"
+                pageMode > 1 ? "50%" : "50%"
             }"><canvas></canvas></div>`.repeat(pages.length);
             viewport.innerHTML = pagesHTML;
             pages.forEach(renderPage);

@@ -15,7 +15,7 @@
                 <button data-pager="next">next</button>
             </div>
             <div id="page-mode">
-                <label>Page Mode <input type="number" value="1" min="1" /></label>
+                <label>Page Mode <input type="number" value="2" min="1" /></label>
             </div>
         </div>
         <div id="viewport-container">
