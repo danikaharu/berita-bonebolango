@@ -262,21 +262,18 @@ class HomeController extends Controller
         );
 
         $array = array();
-        $string = '';
-        foreach ($trendingArticle as $key => $row) {
+
+        foreach ($trendingArticle as $row) {
             $array = array_merge(
                 $array,
                 array($row[2])
             );
-
-            $lastArray = end($array);
-            $string != "" && $string .= ",";
-            $string .= $lastArray;
         }
-        $data = str_replace("/", '', $string);
-        $dataArray = array($data);
+        // Remove slash in array
+        $data = str_replace("/", '', $array);
 
-        $trend = \App\Models\Article::whereIn('slug', $dataArray)
+
+        $trend = \App\Models\Article::whereIn('slug', $data)
             ->published()
             ->with(['user', 'category'])
             ->get();
