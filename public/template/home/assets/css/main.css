@@ -623,24 +623,24 @@ border-radius: 2px;
   top: 0.5rem;
   left: 0.5rem;
   border-radius: 3px;
-  padding: 0.5rem;
-  height: 1rem;
-  width: 3.5rem;
-  text-align: center;
-  background-color: var(--main-color);
   color: var(--background-color);
+  background-color: var(--main-color);
+  width: fit-content;
+  height: 1.438rem;
 }
 
+.trending__image-category a{
+  text-decoration: none;
+}
 
-.trending__image-category>a>span{
-  font-size: 0.6rem;
+.trending__image-category span{
   font-family: "Montserrat", sans-serif;
+  font-size: 0.6rem;
   font-weight: 600;
-  position: absolute;
-  top: 0.1rem;
-  left: 0.4rem;
+  padding: 0.3rem 0.6rem;
   color: var(--background-color);
-  text-transform: uppercase;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .trending__title{
@@ -929,7 +929,7 @@ position: relative;
     position: absolute;
     top: 0.5rem;
     left: 0.5rem;
-    width: 6rem;
+    width: fit-content;
     height: 1.438rem;
   }
 
