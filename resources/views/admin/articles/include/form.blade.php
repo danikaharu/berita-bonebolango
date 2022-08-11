@@ -186,6 +186,19 @@
                 ['insert', ['link', 'picture', 'video']],
                 ['view', ['help']],
             ],
+            callbacks: {
+                onPaste: function(e) {
+                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData(
+                        'Text');
+
+                    e.preventDefault();
+
+                    // Firefox fix
+                    setTimeout(function() {
+                        document.execCommand('insertText', false, bufferText);
+                    }, 10);
+                }
+            }
         });
 
         $('.note-editable').css('font-size', '1.125rem');
