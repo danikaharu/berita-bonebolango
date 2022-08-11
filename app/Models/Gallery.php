@@ -10,6 +10,8 @@ class Gallery extends Model
 {
     use HasFactory;
 
+    protected $table = 'photos';
+
     /**
      * The attributes that are mass assignable.
      *
