@@ -1,6 +1,6 @@
 <td>
     @can('view article')
-        <a href="{{ route('articles.show', $model->slug) }}" class="btn btn-outline-success btn-sm">
+        <a href="{{ route('articles.show', $model->slug) }}" target="_blank" class="btn btn-outline-success btn-sm">
             <i class="fa fa-eye"></i>
         </a>
     @endcan

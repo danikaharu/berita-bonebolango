@@ -1,6 +1,7 @@
 @push('css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
-    <link rel="stylesheet" href="{{ asset('mazer/css/pages/summernote.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('mazer/css/pages/summernote.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('mazer/css/extensions/summernote/summernote-lite.min.css') }}">
     <style>
         .bootstrap-tagsinput .tag {
             margin-right: 2px;
@@ -167,39 +168,63 @@
 </div>
 
 @push('js')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('mazer/js/extensions/jquery/jquery.min.js') }}"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
-    <script src="{{ asset('mazer/js/extensions/summernote.js') }}"></script>
+    <script src="{{ asset('mazer/js/extensions/summernote/summernote-lite.min.js') }}"></script>
+    <script src="{{ asset('mazer/js/extensions/summernote/plugins/summernote-image-attributes.js') }}"></script>
+    <script src="{{ asset('mazer/js/extensions/summernote/plugins/lang/en-us.js') }}"></script>
+    {{-- <script src="{{ asset('mazer/js/extensions/summernote.js') }}"></script> --}}
     <script>
         const tag = $("bootstrap-tagsinput input");
         tag.addClass("form-control");
 
-        $('#body').summernote({
-            tabsize: 2,
-            height: 300,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['help']],
-            ],
-            callbacks: {
-                onPaste: function(e) {
-                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData(
-                        'Text');
+        $(document).ready(function() {
+            $('#body').summernote({
+                tabsize: 2,
+                height: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['help']],
+                ],
+                imageAttributes: {
+                    icon: '<i class="note-icon-pencil"/>',
+                    figureClass: 'figureClass',
+                    figcaptionClass: 'captionClass',
+                    captionText: 'Caption Goes Here.',
+                    manageAspectRatio: true // true = Lock the Image Width/Height, Default to true
+                },
+                lang: 'en-US',
+                popover: {
+                    image: [
+                        ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']], ,
+                        ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                        ['remove', ['removeMedia']],
+                        ['custom', ['imageAttributes']],
+                    ],
+                },
+                // callbacks: {
+                //     onPaste: function(e) {
+                //         var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData)
+                //             .getData(
+                //                 'Text');
 
-                    e.preventDefault();
+                //         e.preventDefault();
 
-                    // Firefox fix
-                    setTimeout(function() {
-                        document.execCommand('insertText', false, bufferText);
-                    }, 10);
-                }
-            }
+                //         // Firefox fix
+                //         setTimeout(function() {
+                //             document.execCommand('insertText', false, bufferText);
+                //         }, 10);
+                //     }
+                // }
+            });
         });
+
 
         $('.note-editable').css('font-size', '1.125rem');
     </script>

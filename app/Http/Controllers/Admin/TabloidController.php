@@ -26,7 +26,7 @@ class TabloidController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $tabloids = Tabloid::with('user:id,name');
+            $tabloids = Tabloid::latest();
 
             return Datatables::of($tabloids)
                 ->addColumn('action', 'admin.tabloids.include.action')
