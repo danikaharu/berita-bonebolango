@@ -130,7 +130,7 @@
                                 <div class="highlight__image">
                                     <a href="{{ route('detailArticle', $article->slug) }}">
                                         <img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }} "
-                                            alt="article image" class="highlight__image-thumbnail">
+                                            alt="article image" class="highlight__image-thumbnail" loading="lazy">
                                     </a>
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
                                 <div class="highlight__image">
                                     <a href="{{ route('detailArticle', $article->slug) }}">
                                         <img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }} "
-                                            alt="article image" class="highlight__image-thumbnail">
+                                            alt="article image" class="highlight__image-thumbnail" loading="lazy">
                                     </a>
                                 </div>
                             </div>
@@ -192,7 +192,7 @@
                                 <div class="highlight__image">
                                     <a href="{{ route('detailArticle', $article->slug) }}">
                                         <img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }} "
-                                            alt="article image" class="highlight__image-thumbnail">
+                                            alt="article image" class="highlight__image-thumbnail" loading="lazy">
                                     </a>
                                 </div>
                             </div>
@@ -239,8 +239,9 @@
                 @forelse ($latestAlbum as $album)
                     <div class="col-lg-4">
                         <a href="{{ route('detailGallery', $album->slug) }}">
-                            <img src="{{ asset('storage/uploads/galleries/' . $album->thumbnail()->file) }} "
-                                alt="highlight" style="object-fit:cover;object-position:center;height:300px;width:100%">
+                            <img src="{{ asset('storage/uploads/galleries/' . $album->galleries->first()->file) }} "
+                                alt="highlight" loading="lazy"
+                                style="object-fit:cover;object-position:center;height:300px;width:100%">
                         </a>
                         <h5 class="highlight-title">
                             <a href="{{ route('detailGallery', $album->slug) }}">{{ $album->title }}</a>
@@ -270,7 +271,7 @@
                                 <div class="swiper-slide">
                                     <a href="{{ route('detailTabloid', $tabloid->slug) }}" target="_blank">
                                         <img src='{{ asset('storage/uploads/tabloids/thumbnail/' . $tabloid->thumbnail) }}'
-                                            style="width: 8.75rem;">
+                                            loading="lazy" style="width: 8.75rem;">
                                     </a>
                                 </div>
                             @endforeach
@@ -286,7 +287,7 @@
                                 <div class="swiper-slide">
                                     <a href="{{ route('detailTabloid', $tabloid->slug) }}" target="_blank">
                                         <img src='{{ asset('storage/uploads/tabloids/thumbnail/' . $tabloid->thumbnail) }}'
-                                            style="width: 8.75rem;">
+                                            loading="lazy" style="width: 8.75rem;">
                                     </a>
                                 </div>
                             @endforeach
