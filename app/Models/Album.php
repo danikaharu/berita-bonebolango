@@ -38,9 +38,4 @@ class Album extends Model
     {
         return $this->hasMany(\App\Models\Gallery::class);
     }
-
-    public function thumbnail()
-    {
-        return $this->galleries()->first();
-    }
 }
