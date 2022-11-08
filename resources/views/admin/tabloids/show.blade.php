@@ -52,7 +52,7 @@
                                             @else
                                                 <a href="{{ asset('storage/uploads/tabloids/' . $tabloid->file) }}"
                                                     target="pdf_frame">
-                                                    <img src="{{ asset('storage/uploads/tabloids/thubmnail/' . $tabloid->thumbnail) }}"
+                                                    <img src="{{ asset('storage/uploads/tabloids/thumbnail/' . $tabloid->thumbnail) }}"
                                                         alt="Thumbnail" class="rounded" width="200" height="150"
                                                         style="object-fit: cover">
                                                 </a>
