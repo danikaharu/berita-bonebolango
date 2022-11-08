@@ -74,7 +74,7 @@
               <div class="overlay-content">
                   <form action="{{ route('search') }}" method="GET">
                       @csrf
-                      <input type="text" placeholder="Cari disini.." name="search">
+                      <input type="text" placeholder="Cari berita disini.." name="search">
                   </form>
               </div>
           </div>
