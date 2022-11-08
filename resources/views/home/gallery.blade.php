@@ -22,8 +22,8 @@
                     <div class="col-lg-4 mb-4">
                         <div class="highlight__image">
                             <a href="{{ route('detailGallery', $album->slug) }}">
-                                <img src="{{ 'storage/uploads/galleries/' . $album->thumbnail()->file }}" alt="album"
-                                    style="object-fit: cover; width: 100%; height: 10.5rem;">
+                                <img src="{{ 'storage/uploads/galleries/' . $album->galleries->first()->file }}"
+                                    alt="album" style="object-fit: cover; width: 100%; height: 10.5rem;">
                             </a>
                         </div>
                         <h5 class=" highlight-title">
