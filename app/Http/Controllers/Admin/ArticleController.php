@@ -72,6 +72,7 @@ class ArticleController extends Controller
         $attr = $request->validated();
 
         $dom = new \DOMDocument();
+        libxml_use_internal_errors(true);
         $dom->loadHTML($request->body, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $images = $dom->getElementsByTagName('img');
 
@@ -81,10 +82,10 @@ class ArticleController extends Controller
                 // preg_match('/data:image\/(?.*?)\;/',$src,$groups);
                 preg_match('/data:image\/(?<mime>.*?)\;/', $src, $groups);
                 $mimetype = $groups['mime'];
-                $filename = uniqid();
-                $filepath = ("storage/summernote/articles/$filename.$mimetype");
+                $filename = uniqid() . '.' . $mimetype;
+                $filepath =  'storage/uploads/summernote/articles/' . $filename;
 
-                $image = Image::make($src)->encode($mimetype, 100)->save(public_path($filepath));
+                $image = Image::make($src)->encode($mimetype, 100)->save($filepath);
 
                 $new_src = asset($filepath);
                 $img->removeAttribute('src');
@@ -213,9 +214,9 @@ class ArticleController extends Controller
 
                 // if summernote image exist remove file from directory
                 if ($src) {
-                    $len = strlen("http://127.0.0.1:8000/storage/summernote/articles/");
+                    $len = strlen("http://127.0.0.1:8000/storage/uploads/summernote/articles/");
                     $fileName = substr($src, $len, strlen($src) - $len);
-                    unlink(public_path('storage/summernote/articles/' . $fileName));
+                    unlink(public_path('storage/uploads/summernote/articles/' . $fileName));
                 }
             }
 
@@ -227,7 +228,7 @@ class ArticleController extends Controller
         } catch (\Throwable $th) {
             return redirect()
                 ->route('articles.index')
-                ->with('error', __('Artikel tidak bisa dihapus karena berelasi dengan data lain.'));
+                ->with('error', __('Artikel tidak bisa dihapus karena berelasi dengan data lain.' . $th->getMessage()));
         }
     }
 
