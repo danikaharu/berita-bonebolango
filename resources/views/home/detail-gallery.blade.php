@@ -9,6 +9,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AlexEmashev/lsb-lightbox@master/dist/lsb.css">
 @endpush
 
+@push('seo')
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="{{ route('detailGallery', $album->slug) }}">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ $album->title }}">
+    <meta property="og:description" content="{{ $album->title }}">
+    <meta property="og:image" content="{{ asset('storage/uploads/galleries/' . $album->galleries->first()->file) }} ">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="berita.bonebolangokab.go.id">
+    <meta property="twitter:url" content="{{ route('detailGallery', $album->slug) }}">
+    <meta name="twitter:title" content="{{ $album->title }}">
+    <meta name="twitter:description" content="{{ $album->title }}">
+    <meta name="twitter:image" content="{{ asset('storage/uploads/galleries/' . $album->galleries->first()->file) }} ">
+@endpush
+
 @section('content')
     <div class="container-fluid my-5">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">

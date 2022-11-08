@@ -11,6 +11,8 @@
     <meta name="keywords" content="Berita Bone Bolango, Bone Bolango,  Website Berita Resmi Pemkab Bone Bolango" />
     <meta name="author" content="Berita Bone Bolango">
 
+    @stack('seo')
+
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180"
         href="{{ asset('template/home') }} /assets/favicon/apple-touch-icon.png">

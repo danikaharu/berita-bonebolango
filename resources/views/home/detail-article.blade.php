@@ -4,6 +4,23 @@
     {{ $article->title }}
 @endsection
 
+@push('seo')
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="{{ route('detailArticle', $article->slug) }}">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ $article->title }}">
+    <meta property="og:description" content="{!! Str::limit(strip_tags($article->body), $limit = 100, $end = '...') !!}">
+    <meta property="og:image" content="{{ asset('storage/uploads/articles/' . $article->thumbnail) }}">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="berita.bonebolangokab.go.id">
+    <meta property="twitter:url" content="{{ route('detailArticle', $article->slug) }}">
+    <meta name="twitter:title" content="{{ $article->title }}">
+    <meta name="twitter:description" content="{!! Str::limit(strip_tags($article->body), $limit = 100, $end = '...') !!}">
+    <meta name="twitter:image" content="{{ asset('storage/uploads/articles/' . $article->thumbnail) }}">
+@endpush
+
 @section('content')
     <div class="container-fluid my-5">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -22,7 +39,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="detail__news-category">
-                        <a href="#">
+                        <a href="{{ route('detailCategory', $article->category->slug) }}">
                             <span>{{ $article->category->title }}</span>
                         </a>
                     </div>
