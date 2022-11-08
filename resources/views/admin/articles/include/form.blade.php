@@ -1,7 +1,8 @@
 @push('css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
-    {{-- <link rel="stylesheet" href="{{ asset('mazer/css/pages/summernote.css') }}"> --}}
-    <link rel="stylesheet" href="{{ asset('mazer/css/extensions/summernote/summernote-lite.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+        integrity="sha512-wXEyXmtKft9mEiu8LTc3+3BQ95aYbvxgvzH4IzFHOwvGlA14B6zREXD4CRmUPx8r2Z1RVUOXS47bwjsotSlZkQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .bootstrap-tagsinput .tag {
             margin-right: 2px;
@@ -168,13 +169,15 @@
 </div>
 
 @push('js')
-    <script src="{{ asset('mazer/js/extensions/jquery/jquery.min.js') }}"></script>
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
-    <script src="{{ asset('mazer/js/extensions/summernote/summernote-lite.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"
+        integrity="sha512-98e5nQTE7pmtZ3xoD5GCVKafmziXDT5WINC91MugFzF57zzBnmvGQl1N70cvdyBSWxjCOC55gq9Zn76MUgtEMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('mazer/js/extensions/summernote/plugins/summernote-image-attributes.js') }}"></script>
-    <script src="{{ asset('mazer/js/extensions/summernote/plugins/lang/en-us.js') }}"></script>
-    {{-- <script src="{{ asset('mazer/js/extensions/summernote.js') }}"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-id-ID.min.js"
+        integrity="sha512-bdViARy+nltxu4VnqeBPWGfBN3yvL3hyo+Pi1lnQqXRkYqOwSVOl4QMU0upsfH/LO/kak7t9a7q7YsdUso+kig=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         const tag = $("bootstrap-tagsinput input");
         tag.addClass("form-control");
@@ -199,7 +202,7 @@
                     captionText: 'Caption Goes Here.',
                     manageAspectRatio: true // true = Lock the Image Width/Height, Default to true
                 },
-                lang: 'en-US',
+                lang: 'id-ID',
                 popover: {
                     image: [
                         ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']], ,
@@ -208,20 +211,6 @@
                         ['custom', ['imageAttributes']],
                     ],
                 },
-                // callbacks: {
-                //     onPaste: function(e) {
-                //         var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData)
-                //             .getData(
-                //                 'Text');
-
-                //         e.preventDefault();
-
-                //         // Firefox fix
-                //         setTimeout(function() {
-                //             document.execCommand('insertText', false, bufferText);
-                //         }, 10);
-                //     }
-                // }
             });
         });
 

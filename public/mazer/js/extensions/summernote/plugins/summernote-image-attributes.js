@@ -21,6 +21,17 @@
                 dialogTitle: "Change Image Attributes",
             },
         },
+        "id-ID": {
+            imageAttributes: {
+                edit: "Edit Attributes",
+                titleLabel: "Title",
+                altLabel: "Alternative Text",
+                captionLabel: "Caption",
+                tooltip: "Edit Image",
+                dialogSaveBtnMessage: "Save",
+                dialogTitle: "Change Image Attributes",
+            },
+        },
     });
     $.extend($.summernote.options, {
         imageAttributes: {
