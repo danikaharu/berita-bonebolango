@@ -60,17 +60,19 @@
   <script src="{{ asset('template/home') }}/assets/js/main.js"></script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-230106264-1"></script>
-  <script>
-      window.dataLayer = window.dataLayer || [];
+  @production
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-230106264-1"></script>
+      <script>
+          window.dataLayer = window.dataLayer || [];
 
-      function gtag() {
-          dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
+          function gtag() {
+              dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
 
-      gtag('config', 'UA-230106264-1');
-  </script> --}}
+          gtag('config', 'UA-230106264-1');
+      </script>
+  @endproduction
 
   <!-- Custom Script -->
   @stack('js')
