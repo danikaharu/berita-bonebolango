@@ -12,6 +12,7 @@ class HomeController extends Controller
     public function index()
     {
         $latestArticle = \App\Models\Article::with(['category', 'user'])
+            ->where('published_at', '<=', now())
             ->published()
             ->latest()
             ->limit(6)
@@ -19,7 +20,7 @@ class HomeController extends Controller
 
 
         $latestAlbum = \App\Models\Album::with(['galleries', 'user'])
-            ->latest('id')
+            ->latest()
             ->limit(6)
             ->get();
 
