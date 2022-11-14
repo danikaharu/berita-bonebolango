@@ -27,6 +27,7 @@ class HomeController extends Controller
         $articleByCategory1 = \App\Models\Article::with(['user', 'category'])
             ->whereHas('category', function ($query) {
                 $query->where('category_id', 1)
+                    ->where('published_at', '<=', now())
                     ->where('status', 'Published');
             })
             ->limit(3)
@@ -35,6 +36,7 @@ class HomeController extends Controller
         $articleByCategory2 = \App\Models\Article::with(['user', 'category'])
             ->whereHas('category', function ($query) {
                 $query->where('category_id', 2)
+                    ->where('published_at', '<=', now())
                     ->where('status', 'Published');
             })
             ->limit(3)
@@ -43,6 +45,7 @@ class HomeController extends Controller
         $articleByCategory3 = \App\Models\Article::with(['user', 'category'])
             ->whereHas('category', function ($query) {
                 $query->where('category_id', 3)
+                    ->where('published_at', '<=', now())
                     ->where('status', 'Published');
             })
             ->limit(3)
@@ -79,6 +82,7 @@ class HomeController extends Controller
         $categories = \App\Models\Article::whereHas('category', function ($query) use ($category) {
             $query->where('category_id', $category->id);
         })
+            ->where('published_at', '<=', now())
             ->where('status', 'Published')
             ->with(['user', 'category'])
             ->latest()
