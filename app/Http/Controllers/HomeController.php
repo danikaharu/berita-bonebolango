@@ -175,6 +175,8 @@ class HomeController extends Controller
                 'dimensions' => 'ga:pagePath, ga:pagePathLevel1, ga:pagePathLevel2',
                 'filters' => 'ga:pagePathLevel1%3D~%5E/berita/',
                 'sort' => '-ga:pageviews',
+                'start-date' => '7daysAgo',
+                'end-date' => 'today',
                 'max-results' => 1
             ]
         );
@@ -215,6 +217,8 @@ class HomeController extends Controller
                 'dimensions' => 'ga:pagePath, ga:pagePathLevel1, ga:pagePathLevel2',
                 'filters' => 'ga:pagePathLevel1%3D~%5E/berita/',
                 'sort' => '-ga:pageviews',
+                'start-date' => '7daysAgo',
+                'end-date' => 'today',
                 'max-results' => 4
             ]
         );
