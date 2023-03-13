@@ -924,7 +924,6 @@ position: relative;
   .trending__image-category{
     background-color: var(--main-color);
     border-radius: 3px;
-    padding: 0.625rem;
     color: var(--background-color);
     position: absolute;
     top: 0.5rem;
@@ -937,9 +936,6 @@ position: relative;
     font-size: 0.8rem;
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
-    position: absolute;
-    top: 0.2rem;
-    left: 1.2rem;
     color: var(--background-color);
   }
 
