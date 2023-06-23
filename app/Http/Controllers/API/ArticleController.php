@@ -13,7 +13,7 @@ class ArticleController extends Controller
     public function index()
     {
         try {
-            $articles = Article::with('category', 'user')->latest()->paginate();
+            $articles = Article::with('category', 'user', 'tagged')->latest()->paginate();
             return ArticleResource::collection($articles);
         } catch (QueryException $e) {
             $error = [

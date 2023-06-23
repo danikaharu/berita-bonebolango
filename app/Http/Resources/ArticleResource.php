@@ -27,6 +27,7 @@ class ArticleResource extends JsonResource
             'caption' =>   $this->caption,
             'body' => $this->body,
             'author' => $this->user->name,
+            'tag' => $this->tagNames(),
         ];
     }
 }
