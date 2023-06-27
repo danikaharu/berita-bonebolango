@@ -28,6 +28,7 @@ class ArticleResource extends JsonResource
             'body' => $this->body,
             'author' => $this->user->name,
             'tag' => $this->tagNames(),
+            'url' => 'https://berita.bonebolangokab.go.id/berita/' . $this->slug,
         ];
     }
 }
