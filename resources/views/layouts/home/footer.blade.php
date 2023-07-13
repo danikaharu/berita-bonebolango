@@ -59,9 +59,9 @@
   <!-- Main JS -->
   <script src="{{ asset('template/home') }}/assets/js/main.js"></script>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
   @production
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-230106264-1"></script>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NBE0YLBE3"></script>
       <script>
           window.dataLayer = window.dataLayer || [];
 
@@ -70,7 +70,7 @@
           }
           gtag('js', new Date());
 
-          gtag('config', 'UA-230106264-1');
+          gtag('config', 'G-0NBE0YLBE3');
       </script>
   @endproduction
 
