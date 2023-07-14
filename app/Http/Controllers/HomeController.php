@@ -131,7 +131,7 @@ class HomeController extends Controller
 
         // Total View Article
         $pageViewArticle = Analytics::performQuery(
-            Period::days(7),
+            Period::months(12),
             'ga:pageviews',
             [
                 'metrics' => 'ga:pageviews',
@@ -169,17 +169,17 @@ class HomeController extends Controller
     private function mainHighlight()
     {
         // Main Highlight Article
-        $startWeek = Carbon::now()->startOfWeek();
-        $endWeek = Carbon::now()->endOfWeek();
+        $startDate = Carbon::now()->startOfMonth();
+        $endDate = Carbon::now();
         $trendingArticle = Analytics::performQuery(
-            Period::create($startWeek, $endWeek),
+            Period::create($startDate, $endDate),
             'ga:pageviews',
             [
                 'metrics' => 'ga:pageviews',
                 'dimensions' => 'ga:pagePath, ga:pagePathLevel1, ga:pagePathLevel2',
                 'filters' => 'ga:pagePathLevel1%3D~%5E/berita/',
                 'sort' => '-ga:pageviews',
-                'start-date' => '7daysAgo',
+                'start-date' => '30daysAgo',
                 'end-date' => 'today',
                 'max-results' => 1
             ]
@@ -211,17 +211,17 @@ class HomeController extends Controller
     private function subHighlight()
     {
         // Sub Highlight Article
-        $startWeek = Carbon::now()->startOfWeek();
-        $endWeek = Carbon::now()->endOfWeek();
+        $startDate = Carbon::now()->startOfMonth();
+        $endDate = Carbon::now();
         $trendingArticle = Analytics::performQuery(
-            Period::create($startWeek, $endWeek),
+            Period::create($startDate, $endDate),
             'ga:pageviews',
             [
                 'metrics' => 'ga:pageviews',
                 'dimensions' => 'ga:pagePath, ga:pagePathLevel1, ga:pagePathLevel2',
                 'filters' => 'ga:pagePathLevel1%3D~%5E/berita/',
                 'sort' => '-ga:pageviews',
-                'start-date' => '7daysAgo',
+                'start-date' => '30daysAgo',
                 'end-date' => 'today',
                 'max-results' => 4
             ]
@@ -254,17 +254,17 @@ class HomeController extends Controller
 
     private function trendingArticle()
     {
-        $startWeek = Carbon::now()->startOfWeek();
-        $endWeek = Carbon::now()->endOfWeek();
+        $startDate = Carbon::now()->startOfMonth();
+        $endDate = Carbon::now();
         $trendingArticle = Analytics::performQuery(
-            Period::create($startWeek, $endWeek),
+            Period::create($startDate, $endDate),
             'ga:pageviews',
             [
                 'metrics' => 'ga:pageviews',
                 'dimensions' => 'ga:pagePath, ga:pagePathLevel1, ga:pagePathLevel2',
                 'filters' => 'ga:pagePathLevel1%3D~%5E/berita/',
                 'sort' => '-ga:pageviews',
-                'start-date' => '7daysAgo',
+                'start-date' => '30daysAgo',
                 'end-date' => 'today',
                 'max-results' => 6
             ]
