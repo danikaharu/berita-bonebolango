@@ -143,11 +143,9 @@
                 <option value="Draft"
                     {{ isset($article) && $article->status == 'Draft' ? 'selected' : (old('status') == 'Draft' ? 'selected' : '') }}>
                     Draft</option>
-                @if (Auth::user()->hasRole('Admin'))
-                    <option value="Published"
-                        {{ isset($article) && $article->status == 'Published' ? 'selected' : (old('status') == 'Published' ? 'selected' : '') }}>
-                        Published</option>
-                @endif
+                <option value="Published"
+                    {{ isset($article) && $article->status == 'Published' ? 'selected' : (old('status') == 'Published' ? 'selected' : '') }}>
+                    Published</option>
             </select>
         </div>
     </div>
