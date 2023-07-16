@@ -52,7 +52,7 @@
                         <span style="margin-left: 1rem;"><i class="far fa-clock"></i>
                             {{ $article->published_at->diffForHumans() }}</span>
                         <span style="margin-left: 1rem;"><i class="fas fa-eye"></i>
-                            {{ $pageViewArticle['rows'][0][2] ?? 0 }}
+                            {{ $pageViewArticle[0]['screenPageViews'] ?? 0 }}
                             view</span>
                     </div>
                     <div class="detail__news-image">

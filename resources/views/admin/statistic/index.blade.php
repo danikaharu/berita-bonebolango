@@ -33,11 +33,11 @@
                                         <tr>
                                             <td>{{ ++$no }}</td>
                                             <td>
-                                                <a href=" {{ url($data['url']) }}" target="_blank">
+                                                <a href=" {{ url($data['fullPageUrl']) }}" target="_blank">
                                                     {{ $data['pageTitle'] }}
                                                 </a>
                                             </td>
-                                            <td>{{ $data['pageViews'] }}</td>
+                                            <td>{{ $data['screenPageViews'] }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -54,11 +54,8 @@
                         </div>
                         <div class="card-body">
                             <ul style="list-style: none;margin:0;padding:0">
-                                <li>Kemarin : {{ $totalVisitorYesterday->sum('pageViews') }}</li>
-                                <li>Hari Ini : {{ $totalVisitorToday->sum('pageViews') }}</li>
-                                <li>Bulan Ini : {{ $totalVisitorMonth->sum('pageViews') }}</li>
-                                <li>Tahun Ini : {{ $totalVisitorYear->sum('pageViews') }}</li>
-                                <li>Total : {{ $totalVisitor->sum('pageViews') }}</li>
+                                <li>Kemarin : {{ $totalVisitorYesterday[0]['screenPageViews'] }}</li>
+                                <li>Hari Ini : {{ $totalVisitorToday[0]['screenPageViews'] }}</li>
                             </ul>
                         </div>
                     </div>
