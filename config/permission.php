@@ -182,6 +182,7 @@ return [
         ['group' => 'articles', 'lists' => ['view article', 'create article', 'edit article', 'delete article']],
         ['group' => 'tabloids', 'lists' => ['view tabloid', 'create tabloid', 'edit tabloid', 'delete tabloid']],
         ['group' => 'albums', 'lists' => ['view album', 'create album', 'edit album', 'delete album']],
+        ['group' => 'press-releases', 'lists' => ['view pressrelease', 'create pressrelease', 'edit pressrelease', 'delete pressrelease']],
         // Don't remove this comment, it will used as 'search param' to generate a new permission
     ],
 ];

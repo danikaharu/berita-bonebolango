@@ -52,10 +52,13 @@
                               @endforeach
                           </ul>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item {{ request()->is('siaran-pers*') ? ' active' : '' }}">
+                          <a class="nav-link" href="{{ route('pressRelease') }}">SIARAN PERS</a>
+                      </li>
+                      <li class="nav-item {{ request()->is('kategori/drpd') ? ' active' : '' }}">
                           <a class="nav-link" href="{{ route('detailCategory', $dprd->slug) }}">DPRD</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item {{ request()->is('kategori/bumd') ? ' active' : '' }}">
                           <a class="nav-link" href="{{ route('detailCategory', $bumd->slug) }}">BUMD</a>
                       </li>
                       <li class="nav-item {{ request()->is('potret') ? ' active' : '' }}">

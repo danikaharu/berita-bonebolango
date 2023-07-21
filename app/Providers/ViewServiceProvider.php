@@ -135,6 +135,16 @@ class ViewServiceProvider extends ServiceProvider
             );
         });
 
+        View::composer([
+            'admin.press-releases.create',
+            'admin.press-releases.edit',
+        ], function ($view) {
+            return $view->with(
+                'categories',
+                \App\Models\Category::select('id', 'title')->get()
+            );
+        });
+
         // don`t remove this comment, it will generate view composer
     }
 }

@@ -163,6 +163,31 @@ class HomeController extends Controller
         return view('home.search', compact('articles', 'search'));
     }
 
+    public function pressRelease()
+    {
+        $pressReleases = \App\Models\PressRelease::with(['user', 'category'])->latest()->paginate(9);
+        return view('home.pressRelease', compact('pressReleases'));
+    }
+
+    public function detailPressRelease(\App\Models\PressRelease $pressRelease)
+    {
+        // get the related categories id of the $pressRelease
+        $related_category_ids = $pressRelease->category()->pluck('categories.id');
+
+        // get the related press release of the categories $related_category_ids
+        $relatedPressRelease = \App\Models\PressRelease::whereHas('category', function ($q) use ($related_category_ids) {
+            $q->whereIn('category_id', $related_category_ids);
+        })
+            ->with(['user', 'category'])
+            ->where('id', '<>', $pressRelease->id)
+            ->where('status', 'Published')
+            ->take(6)
+            ->latest()
+            ->get();
+
+        return view('home.detail-pressRelease', compact('pressRelease', 'relatedPressRelease'));
+    }
+
     private function mainHighlight()
     {
         // Main Highlight Article

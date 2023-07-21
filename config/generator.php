@@ -137,14 +137,12 @@ return [
     'sidebars' => [
         [
             'header' => 'Main',
-            /**
-             * All permissions in menus[] and submenus[]
-             */
             'permissions' => [
                 'view category',
                 'view article',
                 'view tabloid',
                 'view album',
+                'view pressrelease',
             ],
             'menus' => [
                 [
@@ -154,7 +152,8 @@ return [
                     'permission' => null,
                     'permissions' => [
                         'view category',
-                        'view article'
+                        'view article',
+                        'view pressrelease',
                     ],
                     'submenus' => [
                         [
@@ -166,7 +165,12 @@ return [
                             'title' => 'Articles',
                             'route' => 'articles',
                             'permission' => 'view article'
-                        ]
+                        ],
+                        [
+                            'title' => 'Press Release',
+                            'route' => 'press-releases',
+                            'permission' => 'view pressrelease'
+                        ],
                     ]
                 ],
                 [
@@ -189,7 +193,10 @@ return [
         ],
         [
             'header' => 'Users',
-            'permissions' => ['view user', 'view role & permission'],
+            'permissions' => [
+                'view user',
+                'view role & permission'
+            ],
             'menus' => [
                 [
                     'title' => 'Users',
@@ -197,7 +204,7 @@ return [
                     'route' => 'users',
                     'permission' => 'view user',
                     'permissions' => [],
-                    'submenus' => [],
+                    'submenus' => []
                 ],
                 [
                     'title' => 'Roles & permissions',
@@ -205,9 +212,9 @@ return [
                     'route' => 'roles',
                     'permission' => 'view role & permission',
                     'permissions' => [],
-                    'submenus' => [],
+                    'submenus' => []
                 ]
-            ],
-        ],
-    ],
+            ]
+        ]
+    ]
 ];

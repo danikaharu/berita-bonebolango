@@ -37,7 +37,7 @@
                             <span style="margin-left: 1rem;"><i class="far fa-clock"></i>
                                 {{ $article->published_at->diffForHumans() }}</span>
                         </div>
-                        <p class="highlight-content">{!! Str::limit($article->body, 250) !!}</p>
+                        {{-- <p class="highlight-content">{!! Str::limit($article->body, 10) !!}</p> --}}
                     @empty
                         <h5 class="highlight-title">Maaf, belum ada data</h5>
                     @endforelse
