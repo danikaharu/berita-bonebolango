@@ -124,7 +124,7 @@
                 <h2 class="section-title">Berita Terkait</h2>
                 <div class="row">
                     @foreach ($relatedArticles as $article)
-                        <div class="col-lg-4 mb-4">
+                        <div class="col-lg-3 mb-4">
                             <div class="highlight__image">
                                 <div class="highlight__image-category">
                                     <a href="{{ route('detailCategory', $article->category->slug) }}">

@@ -5,7 +5,7 @@
           <div class="container-fluid">
               <div class="row">
                   <div class="col-md-6 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
-                      <a href="#">
+                      <a href="{{ route('home') }}">
                           <img src="{{ asset('template/home') }}/assets/img/logo_berita.svg" />
                       </a>
                   </div>

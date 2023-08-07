@@ -25,7 +25,7 @@
             <h4 class="section__title-sub">INDEKS : {{ $category->title }}</h4>
             <div class="row">
                 @foreach ($categories as $article)
-                    <div class="col-lg-4 mb-4">
+                    <div class="col-lg-3 mb-4">
                         <div class="highlight__image">
                             <a href="{{ route('detailArticle', $article->slug) }}">
                                 <img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }}" alt="article"

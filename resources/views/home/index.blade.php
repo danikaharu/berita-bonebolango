@@ -22,9 +22,9 @@
                                     <span>{{ $article->category->title }}</span>
                                 </a>
                             </div>
-                            <a href="#"><img src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }}"
-                                    alt="highlight"
-                                    style="object-fit:cover;object-position:center;width: 100%; height: 22rem;"></a>
+                            <a href="#"><img class="main"
+                                    src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }}"
+                                    alt="highlight"></a>
                         </div>
                         <h5 class="highlight-title">
                             <a href="{{ route('detailArticle', $article->slug) }}">
@@ -53,9 +53,9 @@
                                                 <span>{{ $article->category->title }}</span>
                                             </a>
                                         </div>
-                                        <a href="{{ route('detailArticle', $article->slug) }}"><img class="img-fluid"
+                                        <a href="{{ route('detailArticle', $article->slug) }}"><img class="sub"
                                                 src="{{ asset('storage/uploads/articles/' . $article->thumbnail) }}"
-                                                alt="highlight" style="width: 100%; object-fit: cover;"></a>
+                                                alt="highlight"></a>
                                     </div>
                                 </div>
                                 <div class="col-lg-7">

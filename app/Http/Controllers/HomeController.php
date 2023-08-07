@@ -91,7 +91,7 @@ class HomeController extends Controller
             ->where('status', 'Published')
             ->with(['user', 'category'])
             ->latest()
-            ->paginate(9);
+            ->paginate(12);
 
         return view('home.detail-category', compact('categories', 'category'));
     }
@@ -130,7 +130,7 @@ class HomeController extends Controller
             ->with(['user', 'category'])
             ->where('id', '<>', $article->id)
             ->where('status', 'Published')
-            ->take(6)
+            ->take(8)
             ->latest()
             ->get();
 

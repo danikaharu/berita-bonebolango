@@ -357,6 +357,19 @@ color: var(--background-color);
   padding: 0 0.5rem;
 }
 
+.highlight__image .main{
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 22rem;
+}
+
+.highlight__image .sub{
+  object-fit: cover;
+  width: 100%;
+  height: 160px;
+}
+
 /*--------------------------------------------------------------
 # Detail News Section
 --------------------------------------------------------------*/
@@ -952,5 +965,28 @@ position: relative;
     object-position:center;
     height:200px;
     width:100%;
+  }
+}
+
+@media screen and ( max-width: 480px ){
+
+  li.page-item {
+
+      display: none;
+  }
+
+  .page-item:first-child,
+  .page-item:nth-child( 2 ),
+  .page-item:nth-last-child( 2 ),
+  .page-item:last-child,
+  .page-item.active,
+  .page-item.disabled {
+
+      display: block;
+  }
+
+  .highlight__image .main, .highlight__image .sub{
+     height: 200px !important;
+     width: 100% !important;
   }
 }
