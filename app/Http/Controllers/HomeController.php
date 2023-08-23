@@ -191,8 +191,9 @@ class HomeController extends Controller
     private function mainHighlight()
     {
         // Main Highlight Article
-        $startDate = Carbon::now()->subMonth();
-        $endDate = Carbon::now();
+        $startDate = now()->subMonth()->startOfDay();
+        $endDate = now()->endOfDay();
+        $period = Period::create($startDate, $endDate);
 
         $dimensionFilter = new FilterExpression([
             'filter' => new Filter([
@@ -204,17 +205,12 @@ class HomeController extends Controller
             ]),
         ]);
 
-        $orderBy = [
-            OrderBy::dimension('pagePath'),
-            OrderBy::metric('screenPageViews', true),
-        ];
-
         $trendingArticle = Analytics::get(
-            Period::create($startDate, $endDate),
+            $period,
             ['screenPageViews'],
             ['pagePath'],
             1,
-            $orderBy,
+            [],
             0,
             $dimensionFilter
         );
@@ -246,8 +242,8 @@ class HomeController extends Controller
     private function subHighlight()
     {
         // Sub Highlight Article
-        $startDate = Carbon::now()->subMonth();
-        $endDate = Carbon::now();
+        $startDate = now()->subMonth()->startOfDay();
+        $endDate = now()->endOfDay();
         $dimensionFilter = new FilterExpression([
             'filter' => new Filter([
                 'field_name' => 'pagePath',
@@ -258,17 +254,12 @@ class HomeController extends Controller
             ]),
         ]);
 
-        $orderBy = [
-            OrderBy::dimension('pagePath'),
-            OrderBy::metric('screenPageViews', true),
-        ];
-
         $trendingArticle = Analytics::get(
             Period::create($startDate, $endDate),
             ['screenPageViews'],
             ['pagePath'],
             4,
-            $orderBy,
+            [],
             0,
             $dimensionFilter
         );
@@ -300,8 +291,8 @@ class HomeController extends Controller
 
     private function trendingArticle()
     {
-        $startDate = Carbon::now()->subMonth();
-        $endDate = Carbon::now();
+        $startDate = now()->subMonth()->startOfDay();
+        $endDate = now()->endOfDay();
         $dimensionFilter = new FilterExpression([
             'filter' => new Filter([
                 'field_name' => 'pagePath',
@@ -312,17 +303,13 @@ class HomeController extends Controller
             ]),
         ]);
 
-        $orderBy = [
-            OrderBy::dimension('pagePath'),
-            OrderBy::metric('screenPageViews', true),
-        ];
 
         $trendingArticle = Analytics::get(
             Period::create($startDate, $endDate),
             ['screenPageViews'],
             ['pagePath'],
             6,
-            $orderBy,
+            [],
             0,
             $dimensionFilter
         );
@@ -349,8 +336,10 @@ class HomeController extends Controller
 
     public function pageViewArticle($slug)
     {
-        $startDate = Carbon::now()->subYear();
+        $startDate = Carbon::createFromFormat('Y-m-d', '2022-11-07');
         $endDate = Carbon::now();
+        $period = Period::create($startDate, $endDate);
+
         $dimensionFilter = new FilterExpression([
             'filter' => new Filter([
                 'field_name' => 'pagePath',
@@ -361,17 +350,12 @@ class HomeController extends Controller
             ]),
         ]);
 
-        $orderBy = [
-            OrderBy::dimension('pagePath'),
-            OrderBy::metric('screenPageViews', true),
-        ];
-
         $pageViewArticle = Analytics::get(
-            Period::create($startDate, $endDate),
+            $period,
             ['screenPageViews'],
             ['pagePath'],
             4,
-            $orderBy,
+            [],
             0,
             $dimensionFilter
         );
