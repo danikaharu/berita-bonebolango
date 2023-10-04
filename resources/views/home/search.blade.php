@@ -32,7 +32,7 @@
                             </a>
                         </div>
                         <h5 class=" highlight-title">
-                            <a href="{{ route('detailGallery', $article->slug) }}">{{ $article->title }}</a>
+                            <a href="{{ route('detailArticle', $article->slug) }}">{{ $article->title }}</a>
                         </h5>
                         <div class="highlight-info">
                             <small>By <span style="font-weight: bold;">{{ $article->user->name }}</span> -
