@@ -40,8 +40,8 @@
                           <a class="nav-link" href="{{ route('home') }}">BERANDA</a>
                       </li>
                       <li class="nav-item {{ request()->is('berita*') ? ' active' : '' }} dropdown">
-                          <a class="nav-link dropdown-toggle" href="{{ route('article') }}" id="navbarDropdown"
-                              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                              data-bs-toggle="dropdown" aria-expanded="false">
                               INDEKS
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
