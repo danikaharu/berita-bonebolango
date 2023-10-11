@@ -41,6 +41,6 @@ Route::get('/kategori/{category}', [App\Http\Controllers\HomeController::class, 
 Route::get('/potret/{album}', [App\Http\Controllers\HomeController::class, 'detailGallery'])->name('detailGallery');
 Route::get('/berita/{article}', [App\Http\Controllers\HomeController::class, 'detailArticle'])->name('detailArticle');
 Route::get('/majalah/{tabloid}', [App\Http\Controllers\HomeController::class, 'detailTabloid'])->name('detailTabloid');
-Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
+Route::post('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 Route::get('/siaran-pers', [App\Http\Controllers\HomeController::class, 'pressRelease'])->name('pressRelease');
 Route::get('/siaran-pers/{press_release}', [App\Http\Controllers\HomeController::class, 'detailPressRelease'])->name('detailPressRelease');

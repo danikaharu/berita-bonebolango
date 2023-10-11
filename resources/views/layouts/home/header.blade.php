@@ -75,7 +75,7 @@
           <div id="myOverlay" class="overlay">
               <span class="closebtn" onclick="closeSearch()" title="Close Overlay">x</span>
               <div class="overlay-content">
-                  <form action="{{ route('search') }}" method="GET">
+                  <form action="{{ route('search') }}" method="POST">
                       @csrf
                       <input type="text" placeholder="Cari berita disini.." name="search">
                   </form>
