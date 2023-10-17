@@ -5,6 +5,8 @@
 @endsection
 
 @push('seo')
+    <link rel="canonical" href="{{ route('detailArticle', $article->slug) }}">
+
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="{{ route('detailArticle', $article->slug) }}">
     <meta property="og:type" content="article">
