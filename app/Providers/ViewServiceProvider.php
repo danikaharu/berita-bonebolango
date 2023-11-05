@@ -31,21 +31,34 @@ class ViewServiceProvider extends ServiceProvider
         View::composer([
             'layouts.home.footer',
         ], function ($view) {
-            $startDate = Carbon::createFromFormat('Y-m-d', '2022-11-07');
-            $endDate = Carbon::now();
-            $yesterday = Carbon::yesterday();
-            $today = Carbon::today();
+            try {
+                $startDate = Carbon::createFromFormat('Y-m-d', '2022-11-07');
+                $endDate = Carbon::now();
+                $yesterday = Carbon::yesterday();
+                $today = Carbon::today();
 
-            $totalVisitor = LaravelGoogleAnalytics::getTotalUsers(Period::create($startDate, $endDate));
-            $totalVisitorYesterday = LaravelGoogleAnalytics::getTotalUsers(Period::create($yesterday, $yesterday));
-            $totalVisitorToday = LaravelGoogleAnalytics::getTotalUsers(Period::create($today, $today));
-            return $view->with(
-                [
-                    'totalVisitor' => $totalVisitor,
-                    'totalVisitorYesterday' => $totalVisitorYesterday,
-                    'totalVisitorToday' => $totalVisitorToday,
-                ],
-            );
+                $totalVisitor = LaravelGoogleAnalytics::getTotalUsers(Period::create($startDate, $endDate));
+                $totalVisitorYesterday = LaravelGoogleAnalytics::getTotalUsers(Period::create($yesterday, $yesterday));
+                $totalVisitorToday = LaravelGoogleAnalytics::getTotalUsers(Period::create($today, $today));
+                return $view->with(
+                    [
+                        'totalVisitor' => $totalVisitor,
+                        'totalVisitorYesterday' => $totalVisitorYesterday,
+                        'totalVisitorToday' => $totalVisitorToday,
+                    ],
+                );
+            } catch (\Throwable $th) {
+                $totalVisitor = 0;
+                $totalVisitorYesterday = 0;
+                $totalVisitorToday = 0;
+                return $view->with(
+                    [
+                        'totalVisitor' => $totalVisitor,
+                        'totalVisitorYesterday' => $totalVisitorYesterday,
+                        'totalVisitorToday' => $totalVisitorToday,
+                    ],
+                );
+            }
         });
 
         View::composer([

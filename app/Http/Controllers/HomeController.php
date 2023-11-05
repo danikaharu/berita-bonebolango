@@ -186,113 +186,168 @@ class HomeController extends Controller
 
     private function mainHighlight()
     {
-        // Main Highlight Article
-        $startDate = now()->subMonth()->startOfDay();
-        $endDate = now()->endOfDay();
-        $period = Period::create($startDate, $endDate);
 
-        $trendingArticle = LaravelGoogleAnalytics::dateRanges($period)
-            ->metrics('screenPageViews')
-            ->dimensions('pagePath')
-            ->whereDimension('pagePath', MatchType::CONTAINS, 'berita')
-            ->limit(1)
-            ->get();
+        try {
+            // Main Highlight Article
+            $startDate = now()->subMonth()->startOfDay();
+            $endDate = now()->endOfDay();
+            $period = Period::create($startDate, $endDate);
 
-        $data = str_replace("/berita/", '', $trendingArticle->table[0]['pagePath']);
+            $trendingArticle = LaravelGoogleAnalytics::dateRanges($period)
+                ->metrics('screenPageViews')
+                ->dimensions('pagePath')
+                ->whereDimension('pagePath', MatchType::CONTAINS, 'berita')
+                ->limit(1)
+                ->get();
 
-        $mainHighlight = \App\Models\Article::where('slug', $data)
-            ->published()
-            ->with(['user', 'category'])
-            ->get();
+            $data = str_replace("/berita/", '', $trendingArticle->table[0]['pagePath']);
 
-        return $mainHighlight;
-        // End Main Highlight Article
+            $mainHighlight = \App\Models\Article::where('slug', $data)
+                ->published()
+                ->with(['user', 'category'])
+                ->get();
+
+            return $mainHighlight;
+            // End Main Highlight Article
+        } catch (\Throwable $th) {
+            $mainHighlight = \App\Models\Article::with(['user', 'category'])
+                ->published()
+                ->latest()
+                ->limit(1)
+                ->get();
+
+            return $mainHighlight;
+        }
     }
 
     private function subHighlight()
     {
-        // Sub Highlight Article
-        $startDate = now()->subMonth()->startOfDay();
-        $endDate = now()->endOfDay();
-        $period = Period::create($startDate, $endDate);
+        try {
+            // Sub Highlight Article
+            $startDate = now()->subMonth()->startOfDay();
+            $endDate = now()->endOfDay();
+            $period = Period::create($startDate, $endDate);
 
-        $trendingArticle = LaravelGoogleAnalytics::dateRanges($period)
-            ->metrics('screenPageViews')
-            ->dimensions('pagePath')
-            ->whereDimension('pagePath', MatchType::CONTAINS, 'berita')
-            ->limit(4)
-            ->get();
+            $trendingArticle = LaravelGoogleAnalytics::dateRanges($period)
+                ->metrics('screenPageViews')
+                ->dimensions('pagePath')
+                ->whereDimension('pagePath', MatchType::CONTAINS, 'berita')
+                ->limit(4)
+                ->get();
 
-        $array = array();
+            $array = array();
 
-        foreach ($trendingArticle->table as $row) {
-            $array = array_merge(
-                $array,
-                array($row['pagePath'])
-            );
+            foreach ($trendingArticle->table as $row) {
+                $array = array_merge(
+                    $array,
+                    array($row['pagePath'])
+                );
+            }
+
+            // Deleting first array item
+            array_shift($array);
+
+            // Remove slash in array
+            $data = str_replace("/berita/", '', $array);
+
+            $subHighlight = \App\Models\Article::whereIn('slug', $data)
+                ->published()
+                ->with(['user', 'category'])
+                ->get();
+
+            return $subHighlight;
+            // End Sub Highlight Article
+        } catch (\Throwable $th) {
+            $allArticle = \App\Models\Article::published()
+                ->with(['user', 'category'])
+                ->latest()
+                ->get();
+            $article1 = $allArticle->pluck('slug')[1];
+            $article2 = $allArticle->pluck('slug')[2];
+            $article3 = $allArticle->pluck('slug')[3];
+
+            $data = array($article1, $article2, $article3);
+
+            $subHighlight = \App\Models\Article::whereIn('slug', $data)
+                ->published()
+                ->with(['user', 'category'])
+                ->get();
+
+            return $subHighlight;
         }
-
-        // Deleting first array item
-        array_shift($array);
-
-        // Remove slash in array
-        $data = str_replace("/berita/", '', $array);
-
-
-        $subHighlight = \App\Models\Article::whereIn('slug', $data)
-            ->published()
-            ->with(['user', 'category'])
-            ->get();
-
-        return $subHighlight;
-        // End Sub Highlight Article
     }
 
     private function trendingArticle()
     {
-        $startDate = now()->subMonth()->startOfDay();
-        $endDate = now()->endOfDay();
-        $period = Period::create($startDate, $endDate);
+        try {
+            $startDate = now()->subMonth()->startOfDay();
+            $endDate = now()->endOfDay();
+            $period = Period::create($startDate, $endDate);
 
-        $trendingArticle = LaravelGoogleAnalytics::dateRanges($period)
-            ->metrics('screenPageViews')
-            ->dimensions('pagePath')
-            ->whereDimension('pagePath', MatchType::CONTAINS, 'berita')
-            ->limit(6)
-            ->get();
+            $trendingArticle = LaravelGoogleAnalytics::dateRanges($period)
+                ->metrics('screenPageViews')
+                ->dimensions('pagePath')
+                ->whereDimension('pagePath', MatchType::CONTAINS, 'berita')
+                ->limit(6)
+                ->get();
 
-        $array = array();
+            $array = array();
 
-        foreach ($trendingArticle->table as $row) {
-            $array = array_merge(
-                $array,
-                array($row['pagePath'])
-            );
+            foreach ($trendingArticle->table as $row) {
+                $array = array_merge(
+                    $array,
+                    array($row['pagePath'])
+                );
+            }
+            // Remove slash in array
+            $data = str_replace("/berita/", '', $array);
+
+
+            $trend = \App\Models\Article::whereIn('slug', $data)
+                ->published()
+                ->with(['user', 'category'])
+                ->get();
+
+            return $trend;
+        } catch (\Throwable $th) {
+            $allArticle = \App\Models\Article::published()
+                ->with(['user', 'category'])
+                ->latest()
+                ->get();
+            $article1 = $allArticle->pluck('slug')[1];
+            $article2 = $allArticle->pluck('slug')[2];
+            $article3 = $allArticle->pluck('slug')[3];
+            $article4 = $allArticle->pluck('slug')[4];
+            $article5 = $allArticle->pluck('slug')[5];
+            $article6 = $allArticle->pluck('slug')[6];
+
+            $data = array($article1, $article2, $article3, $article4, $article5, $article6);
+
+            $subHighlight = \App\Models\Article::whereIn('slug', $data)
+                ->published()
+                ->with(['user', 'category'])
+                ->get();
+
+            return $subHighlight;
         }
-        // Remove slash in array
-        $data = str_replace("/berita/", '', $array);
-
-
-        $trend = \App\Models\Article::whereIn('slug', $data)
-            ->published()
-            ->with(['user', 'category'])
-            ->get();
-
-        return $trend;
     }
 
     public function pageViewArticle($slug)
     {
-        $startDate = Carbon::createFromFormat('Y-m-d', '2022-11-07');
-        $endDate = Carbon::now();
-        $period = Period::create($startDate, $endDate);
+        try {
+            $startDate = Carbon::createFromFormat('Y-m-d', '2022-11-07');
+            $endDate = Carbon::now();
+            $period = Period::create($startDate, $endDate);
 
-        $pageViewArticle = LaravelGoogleAnalytics::dateRanges($period)
-            ->metrics('screenPageViews')
-            ->dimensions('pagePath')
-            ->whereDimension('pagePath', MatchType::CONTAINS, $slug)
-            ->get();
+            $pageViewArticle = LaravelGoogleAnalytics::dateRanges($period)
+                ->metrics('screenPageViews')
+                ->dimensions('pagePath')
+                ->whereDimension('pagePath', MatchType::CONTAINS, $slug)
+                ->get();
 
-        return $pageViewArticle->table;
+            return $pageViewArticle->table;
+        } catch (\Throwable $th) {
+            return 0;
+        }
     }
 }
