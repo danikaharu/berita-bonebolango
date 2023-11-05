@@ -2,12 +2,12 @@
 
 namespace App\Providers;
 
-use Carbon\Carbon;
-use Analytics;
-use Spatie\Analytics\Period;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Carbon;
+use AkkiIo\LaravelGoogleAnalytics\Facades\LaravelGoogleAnalytics;
+use AkkiIo\LaravelGoogleAnalytics\Period;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -31,14 +31,14 @@ class ViewServiceProvider extends ServiceProvider
         View::composer([
             'layouts.home.footer',
         ], function ($view) {
-            $startDate = Carbon::now()->subYear();
+            $startDate = Carbon::createFromFormat('Y-m-d', '2022-11-07');
             $endDate = Carbon::now();
             $yesterday = Carbon::yesterday();
             $today = Carbon::today();
 
-            $totalVisitor = Analytics::fetchTotalVisitorsAndPageViews(Period::create($startDate, $endDate));
-            $totalVisitorYesterday = Analytics::fetchTotalVisitorsAndPageViews(Period::create($yesterday, $yesterday));
-            $totalVisitorToday = Analytics::fetchTotalVisitorsAndPageViews(Period::create($today, $today));
+            $totalVisitor = LaravelGoogleAnalytics::getTotalUsers(Period::create($startDate, $endDate));
+            $totalVisitorYesterday = LaravelGoogleAnalytics::getTotalUsers(Period::create($yesterday, $yesterday));
+            $totalVisitorToday = LaravelGoogleAnalytics::getTotalUsers(Period::create($today, $today));
             return $view->with(
                 [
                     'totalVisitor' => $totalVisitor,

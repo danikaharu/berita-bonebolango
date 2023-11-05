@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Analytics;
-use Carbon\Carbon;
-use Spatie\Analytics\Period;
-use Google\Analytics\Data\V1beta\Filter;
-use Google\Analytics\Data\V1beta\FilterExpression;
-use Google\Analytics\Data\V1beta\Filter\StringFilter;
+use Illuminate\Support\Carbon;
+use AkkiIo\LaravelGoogleAnalytics\Facades\LaravelGoogleAnalytics;
+use AkkiIo\LaravelGoogleAnalytics\Period;
 use Google\Analytics\Data\V1beta\Filter\StringFilter\MatchType;
-use Spatie\Analytics\OrderBy;
 
 class HomeController extends Controller
 {
@@ -195,40 +191,14 @@ class HomeController extends Controller
         $endDate = now()->endOfDay();
         $period = Period::create($startDate, $endDate);
 
-        $dimensionFilter = new FilterExpression([
-            'filter' => new Filter([
-                'field_name' => 'pagePath',
-                'string_filter' => new StringFilter([
-                    'match_type' => MatchType::CONTAINS,
-                    'value' => 'berita',
-                ]),
-            ]),
-        ]);
+        $trendingArticle = LaravelGoogleAnalytics::dateRanges($period)
+            ->metrics('screenPageViews')
+            ->dimensions('pagePath')
+            ->whereDimension('pagePath', MatchType::CONTAINS, 'berita')
+            ->limit(1)
+            ->get();
 
-        $trendingArticle = Analytics::get(
-            $period,
-            ['screenPageViews'],
-            ['pagePath'],
-            1,
-            [],
-            0,
-            $dimensionFilter
-        );
-
-        $array = array();
-        $string = '';
-        foreach ($trendingArticle as $key => $row) {
-
-            $array = array_merge(
-                $array,
-                array($row['pagePath'])
-            );
-
-            $lastArray = end($array);
-            $string != "" && $string .= ",";
-            $string .= $lastArray;
-        }
-        $data = str_replace("/berita/", '', $string);
+        $data = str_replace("/berita/", '', $trendingArticle->table[0]['pagePath']);
 
         $mainHighlight = \App\Models\Article::where('slug', $data)
             ->published()
@@ -244,29 +214,18 @@ class HomeController extends Controller
         // Sub Highlight Article
         $startDate = now()->subMonth()->startOfDay();
         $endDate = now()->endOfDay();
-        $dimensionFilter = new FilterExpression([
-            'filter' => new Filter([
-                'field_name' => 'pagePath',
-                'string_filter' => new StringFilter([
-                    'match_type' => MatchType::CONTAINS,
-                    'value' => 'berita',
-                ]),
-            ]),
-        ]);
+        $period = Period::create($startDate, $endDate);
 
-        $trendingArticle = Analytics::get(
-            Period::create($startDate, $endDate),
-            ['screenPageViews'],
-            ['pagePath'],
-            4,
-            [],
-            0,
-            $dimensionFilter
-        );
+        $trendingArticle = LaravelGoogleAnalytics::dateRanges($period)
+            ->metrics('screenPageViews')
+            ->dimensions('pagePath')
+            ->whereDimension('pagePath', MatchType::CONTAINS, 'berita')
+            ->limit(4)
+            ->get();
 
         $array = array();
 
-        foreach ($trendingArticle as $row) {
+        foreach ($trendingArticle->table as $row) {
             $array = array_merge(
                 $array,
                 array($row['pagePath'])
@@ -293,30 +252,18 @@ class HomeController extends Controller
     {
         $startDate = now()->subMonth()->startOfDay();
         $endDate = now()->endOfDay();
-        $dimensionFilter = new FilterExpression([
-            'filter' => new Filter([
-                'field_name' => 'pagePath',
-                'string_filter' => new StringFilter([
-                    'match_type' => MatchType::CONTAINS,
-                    'value' => 'berita',
-                ]),
-            ]),
-        ]);
+        $period = Period::create($startDate, $endDate);
 
-
-        $trendingArticle = Analytics::get(
-            Period::create($startDate, $endDate),
-            ['screenPageViews'],
-            ['pagePath'],
-            6,
-            [],
-            0,
-            $dimensionFilter
-        );
+        $trendingArticle = LaravelGoogleAnalytics::dateRanges($period)
+            ->metrics('screenPageViews')
+            ->dimensions('pagePath')
+            ->whereDimension('pagePath', MatchType::CONTAINS, 'berita')
+            ->limit(6)
+            ->get();
 
         $array = array();
 
-        foreach ($trendingArticle as $row) {
+        foreach ($trendingArticle->table as $row) {
             $array = array_merge(
                 $array,
                 array($row['pagePath'])
@@ -340,26 +287,12 @@ class HomeController extends Controller
         $endDate = Carbon::now();
         $period = Period::create($startDate, $endDate);
 
-        $dimensionFilter = new FilterExpression([
-            'filter' => new Filter([
-                'field_name' => 'pagePath',
-                'string_filter' => new StringFilter([
-                    'match_type' => MatchType::CONTAINS,
-                    'value' => $slug,
-                ]),
-            ]),
-        ]);
+        $pageViewArticle = LaravelGoogleAnalytics::dateRanges($period)
+            ->metrics('screenPageViews')
+            ->dimensions('pagePath')
+            ->whereDimension('pagePath', MatchType::CONTAINS, $slug)
+            ->get();
 
-        $pageViewArticle = Analytics::get(
-            $period,
-            ['screenPageViews'],
-            ['pagePath'],
-            4,
-            [],
-            0,
-            $dimensionFilter
-        );
-
-        return $pageViewArticle;
+        return $pageViewArticle->table;
     }
 }

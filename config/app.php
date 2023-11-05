@@ -169,7 +169,6 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-        Spatie\Analytics\AnalyticsServiceProvider::class,
 
         /*
          * Application Service Providers...

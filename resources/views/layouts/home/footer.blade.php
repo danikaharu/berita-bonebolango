@@ -17,9 +17,9 @@
                       Statistik Web
                   </h4>
                   <ul class="footer__list">
-                      <li>Total Pengunjung : {{ $totalVisitor->sum('pageViews') }}</li>
-                      <li>Hari ini : {{ $totalVisitorToday->sum('pageViews') }}</li>
-                      <li>Kemarin : {{ $totalVisitorYesterday->sum('pageViews') }}</li>
+                      <li>Total Pengunjung : {{ $totalVisitor }}</li>
+                      <li>Hari ini : {{ $totalVisitorToday }}</li>
+                      <li>Kemarin : {{ $totalVisitorYesterday }}</li>
                   </ul>
               </div>
               <div class="col-lg-6 mb-4">
