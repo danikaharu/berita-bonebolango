@@ -54,8 +54,20 @@
                         </div>
                         <div class="card-body">
                             <ul style="list-style: none;margin:0;padding:0">
-                                <li>Kemarin : {{ $totalVisitorYesterday[0]['screenPageViews'] }}</li>
-                                <li>Hari Ini : {{ $totalVisitorToday[0]['screenPageViews'] }}</li>
+                                <li>Kemarin :
+                                    @if ($totalVisitorYesterday->has(0))
+                                        {{ $totalVisitorYesterday[0]['screenPageViews'] }}
+                                    @else
+                                        0
+                                    @endif
+                                </li>
+                                <li>Hari Ini :
+                                    @if ($totalVisitorToday->has(0))
+                                        {{ $$totalVisitorToday[0]['screenPageViews'] }}
+                                    @else
+                                        0
+                                    @endif
+                                </li>
                             </ul>
                         </div>
                     </div>
